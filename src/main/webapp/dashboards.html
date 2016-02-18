@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>eHarmony Swagger Documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="./lib/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="./css/main.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div>
+            <div class="navbar-header"><a class="navbar-brand" href="/">API</a></div>
+            <div>
+                <ul class="nav navbar-nav">
+                    <li><a href="/index.html">Home</a></li>
+                    <li><a href="/services.html">Swagger Services</a></li>
+                    <li class="active"><a href="/dashboards.html">Swagger Dashboards</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="col-md-12 well">
+            <div class="container pull-left">
+                <h3>Dashboards</h3>
+                <span>A directory of dashboards of swagger services.</span>
+            </div>
+            <div class="pull-right">
+                <div class="pull-right">
+                    <a href="/dashboardedit.html" data-toggle="tooltip" title="Create Dashboard" class="btn btn-primary"><span class="glyphicon glyphicon-plus-sign"></span></a>
+                </div>
+                <form action="" class="search-container">
+                    <input data-bind="textInput: searchFilter" size="35" type="text" class="form-control" id="searchDashboards" placeholder="Search">
+                </form>
+            </div>
+        </div>
+        <div class="col-md-12 list-group" data-bind="foreach: searchDashboards">
+            <a class="list-group-item" data-bind="attr: { href: dashboardLink }">
+                <h4 class="list-group-item-heading" data-bind="text: name"></h4>
+                <p class="list-group-item-text" data-bind="text: description"></p>
+            </a>
+        </div>
+    </div><!--/row-->
+
+</div><!--/.fluid-container-->
+
+<!-- Le javascript
+================================================== -->
+<script src="./lib/jquery-1.11.3.min.js"></script>
+<script src="./lib/jquery-cookie.js"></script>
+<script src="./lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="./lib/knockout-3.3.0.js"></script>
+<script src="./js/dashboardmodel.js"></script>
+<script src="./js/dashboards.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>eHarmony Swagger Documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="./lib/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="./css/main.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div>
+            <div class="navbar-header"><a class="navbar-brand" href="/">API</a></div>
+            <div>
+                <ul class="nav navbar-nav">
+                    <li><a href="/index.html">Home</a></li>
+                    <li class="active"><a href="/services.html">Swagger Services</a></li>
+                    <li><a href="/dashboards.html">Swagger Dashboards</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="col-md-12 well">
+            <div class="container pull-left">
+                <h3>Available Swagger Enabled Services</h3>
+                <span>A directory of services that have published their swagger specifications.</span>
+            </div>
+            <form action="#" class="pull-right form-inline search-container">
+                <div class="form-group">
+                    <select class="form-control" data-bind="options: availableCategories, value: categoryFilter"></select>
+                </div>
+                <div class="form-group">
+                    <select class="form-control" data-bind="options: availableEnvironments, value: environmentFilter"></select>
+                </div>
+                <input data-bind="textInput: searchFilter" size="35" type="text" class="form-control" id="searchServices" placeholder="Search">
+            </form>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Service</th>
+                    <th>Description</th>
+                    <th>Environment</th>
+                    <th>Category</th>
+                    <th>URL</th>
+                    <th>Swagger Spec</th>
+                    <th>Swagger UI</th>
+                    <th>Save</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: searchDocumentation">
+                <tr>
+                    <td data-bind="text: serviceName">User Activity Service</td>
+                    <td data-bind="text: serviceDescription">Processes and retrieves aggregated and raw user activity data</td>
+                    <td data-bind="text: environment">local</td>
+                    <td data-bind="text: category">Matching</td>
+                    <td><a target="_blank" data-bind="text: displayHost, attr: {href: displayHost}"></a></td>
+                    <td><a target="_blank" class="glyphicon glyphicon-link" data-bind="attr: {href: displaySwaggerSpec}"></a></td>
+                    <td><a target="_blank" class="glyphicon glyphicon-link" data-bind="attr: {href: displaySwaggerUi}"></a></td>
+                    <td>
+                        <!-- ko ifnot: $parent.isSaved($data) -->
+                        <a href="#" data-bind="click: $parent.saveDocumentation" class="glyphicon glyphicon-plus action positive-action" data-toggle='tooltip' title='Save'></a>
+                        <!-- /ko -->
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div><!--/row-->
+
+</div><!--/.fluid-container-->
+
+<!-- Le javascript
+================================================== -->
+<script src="./lib/jquery-1.11.3.min.js"></script>
+<script src="./lib/jquery-cookie.js"></script>
+<script src="./lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="./lib/knockout-3.3.0.js"></script>
+<script src="./js/documentationmodel.js"></script>
+<script src="./js/services.js"></script>
+
+</body>
+</html>

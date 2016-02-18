@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+    <bean id="propertyPlaceholderConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="ignoreUnresolvablePlaceholders" value="true" />
+        <property name="ignoreResourceNotFound"         value="true" />
+        <property name="locations">
+            <list>
+                <value>classpath:eh-swagger-repository.properties</value>
+                <value>${config}</value>
+            </list>
+        </property>
+    </bean>
+
+    <context:annotation-config />
+    <context:component-scan base-package="com.eharmony.services"/>
+
+    <bean name="documentationRepository" class="com.eharmony.services.swagger.persistence.FileDocumentationRepository">
+        <property name="fileLocation" value="${filerepository.location}"/>
+    </bean>
+
+    <bean name="dashboardRepository" class="com.eharmony.services.swagger.persistence.FileDashboardRepository">
+        <property name="fileLocation" value="${filerepository.location}"/>
+    </bean>
+
+    <!-- Swagger -->
+    <bean class="com.eharmony.services.swagger.Swaggerizer">
+        <property name="basePath" value="/api" />
+        <property name="resourcePackage" value="com.eharmony.services.swagger,io.swagger.jaxrs.json,io.swagger.validator.resources"/>
+        <property name="apiHost" value="${swagger.ui.host}" />
+    </bean>
+</beans>
