@@ -7,27 +7,13 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.HashSet;
 import java.util.Locale;
 import java.util.Objects;
-import java.util.Set;
 
 public class DocumentationRepositoryPublisher {
     private static final Logger LOG = LoggerFactory.getLogger(DocumentationRepositoryClient.class);
     private static final String SWAGGER_SPEC_PATH = "%s/swagger.json";
     private static final String SWAGGER_UI_PATH = "%s/swagger-ui";
-    private static final Set<String> VALID_ENVIRONMENTS = new HashSet<>();
-
-    static {
-        VALID_ENVIRONMENTS.add("np");
-        VALID_ENVIRONMENTS.add("lt");
-        VALID_ENVIRONMENTS.add("prod");
-        VALID_ENVIRONMENTS.add("int");
-    }
-
-    public DocumentationRepositoryPublisher() {
-
-    }
 
     /**
      * Creates a documentation object and passes it to the documentation repository client to save it.
@@ -43,11 +29,6 @@ public class DocumentationRepositoryPublisher {
             LOG.debug("Ignoring documentation configuration for this host because the " +
                     "environment is not set or is local.");
             return;
-        }
-        if (!VALID_ENVIRONMENTS.contains(lowerEnvironment)) {
-            throw new IllegalStateException(
-                    String.format("Invalid environment: %s. Please use one of the following: %s",
-                            environment, VALID_ENVIRONMENTS.toString()));
         }
 
         try {

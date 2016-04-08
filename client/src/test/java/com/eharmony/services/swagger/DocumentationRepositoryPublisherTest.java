@@ -64,25 +64,6 @@ public class DocumentationRepositoryPublisherTest {
                 HOST);
     }
 
-    @Test(expected = IllegalStateException.class)
-    public void postDocumentationWithInvalidEnvironmentAndExpectIllegalStateException() throws IOException {
-        BeanConfig beanConfig = new BeanConfig();
-
-        DocumentationRepositoryPublisher out = Mockito.spy(
-                new DocumentationRepositoryPublisher());
-
-        DocumentationRepositoryClient mockClient = Mockito.mock(DocumentationRepositoryClient.class);
-        Mockito.doThrow(new IOException()).when(mockClient)
-                .saveDocumentationForService(Mockito.any(Documentation.class));
-
-        Mockito.doReturn(mockClient).when(out).createClient(HOST);
-
-        out.publish(beanConfig,
-                "Test",
-                "Test",
-                "http://somehost.com");
-    }
-
     @Test
     public void postDocumentationWithLocalEnvironmentAndExpectNothingHappens() throws IOException {
         BeanConfig beanConfig = new BeanConfig();

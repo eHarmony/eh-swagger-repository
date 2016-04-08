@@ -7,7 +7,7 @@ Add this client to your swagger enabled service to publish your swagger docs to 
 ## Configuration
 
 1. Add this to your pom:   
-    ```xml   
+    ```xml
             <!-- Swagger -->
             <dependency>
                 <groupId>com.eharmony.services</groupId>

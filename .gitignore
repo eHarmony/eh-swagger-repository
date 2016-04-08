@@ -2,3 +2,6 @@
 target/
 .*.iml
 eh-swagger-repository.iml
+model/*.iml
+client/*.iml
+repository/*.iml
