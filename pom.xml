@@ -8,6 +8,11 @@
     <name>eh-swagger-repository</name>
     <packaging>war</packaging>
 
+    <organization>
+        <name>eHarmony</name>
+        <url>http://eharmony.com</url>
+    </organization>
+
     <properties>
         <service.port>8081</service.port>
 
