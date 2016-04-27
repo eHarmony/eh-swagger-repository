@@ -28,14 +28,13 @@
 
         <eh-swagger-version>2.0.0-SNAPSHOT</eh-swagger-version>
         <eh-swagger-repository-model-version>1.0.0-SNAPSHOT</eh-swagger-repository-model-version>
-	<eh-swagger-validator-version>1.0.0-SNAPSHOT</eh-swagger-validator-version>
+	    <eh-swagger-validator-version>1.0.0-SNAPSHOT</eh-swagger-validator-version>
     </properties>
 
     <scm>
-        <connection>scm:git:git@github.corp.eharmony.com:matching/eh-swagger-repository.git</connection>
-        <url>git@github.corp.eharmony.com:matching/eh-swagger-repository.git</url>
-        <developerConnection>scm:git:git@github.corp.eharmony.com:matching/eh-swagger-repository.git
-        </developerConnection>
+        <connection>scm:git:git@github.com:eHarmony/eh-swagger-repository.git</connection>
+        <url>git@github.com:eHarmony/eh-swagger-repository.git</url>
+        <developerConnection>scm:git:git@github.com:eHarmony/eh-swagger-repository.git</developerConnection>
     </scm>
 
     <distributionManagement>
