@@ -1,0 +1,41 @@
+<configuration>
+    <jmxConfigurator />
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/eh-swagger-repository.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/eh-swagger-repository.log.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!-- or whenever the file size reaches 100MB -->
+                <maxFileSize>100MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{ISO8601} %-5level [%logger{1}] %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- cmp-service packages -->
+    <logger name="com.eharmony.matching.cmpservice">
+        <level value="DEBUG" />
+    </logger>
+    <!-- cmp-core and cmp-client packages -->
+    <logger name="com.eharmony.cmp">
+        <level value="DEBUG" />
+    </logger>
+    <!-- cmp-corelib packages -->
+    <logger name="com.eharmony.core">
+        <level value="DEBUG" />
+    </logger>
+    <!-- proto-rest packages -->
+    <logger name="com.eharmony.protorest">
+        <level value="DEBUG" />
+    </logger>
+
+    <root>
+        <level value="INFO" />
+        <appender-ref ref="FILE" />
+    </root>
+
+</configuration>
