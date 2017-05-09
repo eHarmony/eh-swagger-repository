@@ -42,7 +42,8 @@
         <connection>scm:git:git@github.com:eHarmony/eh-swagger-repository.git</connection>
         <url>git@github.com:eHarmony/eh-swagger-repository.git</url>
         <developerConnection>scm:git:git@github.com:eHarmony/eh-swagger-repository.git</developerConnection>
-    </scm>
+      <tag>HEAD</tag>
+  </scm>
 
     <distributionManagement>
         <!-- use the following if you're not using a snapshot version. -->
@@ -367,7 +368,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
-                <version>2.0</version>
+                <version>2.5.3</version>
                 <dependencies>
                     <dependency>
                         <groupId>org.apache.maven.scm</groupId>
