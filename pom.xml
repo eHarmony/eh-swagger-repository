@@ -4,7 +4,7 @@
 
     <groupId>com.eharmony.services</groupId>
     <artifactId>eh-swagger-repository</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1-SNAPSHOT</version>
     <name>eh-swagger-repository</name>
     <packaging>war</packaging>
 
@@ -40,7 +40,7 @@
         <connection>scm:git:git@github.com:eHarmony/eh-swagger-repository.git</connection>
         <url>git@github.com:eHarmony/eh-swagger-repository.git</url>
         <developerConnection>scm:git:git@github.com:eHarmony/eh-swagger-repository.git</developerConnection>
-      <tag>eh-swagger-repository-1.0.0</tag>
+      <tag>HEAD</tag>
   </scm>
 
     <distributionManagement>
