@@ -35,7 +35,7 @@
 
         <eh-swagger-version>2.0.1-jersey2</eh-swagger-version>
         <eh-swagger-repository-model-version>1.0.1</eh-swagger-repository-model-version>
-	    <eh-swagger-validator-version>1.0.0-SNAPSHOT</eh-swagger-validator-version>
+        <eh-swagger-validator-version>2.0.0-SNAPSHOT</eh-swagger-validator-version>
     </properties>
 
     <scm>
