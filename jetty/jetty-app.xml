@@ -114,7 +114,7 @@
                     </Array>
                 </Arg>
                 <Set name="host"><Property name="jetty.host" default="localhost"/></Set>
-                <Set name="port"><Property name="jetty.port" default="8092" /></Set>
+                <Set name="port"><Property name="jetty.port" default="8081" /></Set>
                 <Set name="idleTimeout"><Property name="http.timeout" default="60000"/></Set>
             </New>
         </Arg>
@@ -155,7 +155,7 @@
     <New id="requestLogHandler" class="org.eclipse.jetty.server.handler.RequestLogHandler">
         <Set name="requestLog">
             <New id="RequestLogImpl" class="ch.qos.logback.access.jetty.RequestLogImpl">
-                <Set name="fileName"><SystemProperty name="app.home"/>jetty/logback-access.xml</Set>
+                <Set name="fileName">jetty/logback-access.xml</Set>
             </New>
         </Set>
     </New>

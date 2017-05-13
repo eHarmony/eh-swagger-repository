@@ -37,10 +37,10 @@ function Dashboard(jsonDoc) {
     this.description = jsonDoc.description;
     this.documentationIds = jsonDoc.documentationIds;
     this.dashboardLink = ko.computed(function() {
-        return "/dashboardview.html?dashboardId=" + this.id;
+        return "/dashboards/view?dashboardId=" + this.id;
     }, this);
     this.dashboardEditLink = ko.computed(function() {
-        return "/dashboardedit.html?dashboardId=" + this.id;
+        return "/dashboards/edit?dashboardId=" + this.id;
     }, this);
 }
 

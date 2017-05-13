@@ -74,6 +74,7 @@ function DocumentationCollectionViewModel(documentationArray) {
     this.setCurrentDocumentation = function(data, event) {
         if(event && event.type == "click") {
             self.currentDocumentation(data);
+            $.get("/accessed?url=" + data.displaySwaggerUi());
         }
     };
 

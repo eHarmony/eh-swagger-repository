@@ -17,9 +17,9 @@
 package com.eharmony.services.swagger.persistence;
 
 import com.eharmony.services.swagger.model.Documentation;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.StringUtils;
-import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.type.TypeReference;
 
 import javax.annotation.PostConstruct;
 import java.io.File;

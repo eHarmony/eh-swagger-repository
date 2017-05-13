@@ -14,12 +14,11 @@
     </organization>
 
     <properties>
-        <service.port>8081</service.port>
-
         <spring-version>4.3.6.RELEASE</spring-version>
+        <spring-security-version>4.2.2.RELEASE</spring-security-version>
         <jersey-version>2.23.2</jersey-version>
         <mockito-version>1.9.0</mockito-version>
-        <jackson-version>1.9.13</jackson-version>
+        <jackson-version>2.6.3</jackson-version>
         <logback-version>1.0.13</logback-version>
         <joda-time-version>2.2</joda-time-version>
         <metrics-version>2.2.0</metrics-version>
@@ -30,7 +29,7 @@
         <jetty-version>9.2.10.v20150310</jetty-version>
 
         <commons-logging-version>1.2</commons-logging-version>
-        <slf4j-version>1.7.7</slf4j-version>
+        <slf4j-version>1.7.21</slf4j-version>
         <log4j-version>1.2.17</log4j-version>
 
         <eh-swagger-version>2.0.1-jersey2</eh-swagger-version>
@@ -42,28 +41,8 @@
         <connection>scm:git:git@github.com:eHarmony/eh-swagger-repository.git</connection>
         <url>git@github.com:eHarmony/eh-swagger-repository.git</url>
         <developerConnection>scm:git:git@github.com:eHarmony/eh-swagger-repository.git</developerConnection>
-      <tag>HEAD</tag>
-  </scm>
-
-    <distributionManagement>
-        <!-- use the following if you're not using a snapshot version. -->
-        <repository>
-            <uniqueVersion>false</uniqueVersion>
-            <id>internal-releases</id>
-            <name>Internal Releases</name>
-            <url>https://repository.corp.eharmony.com/nexus/content/repositories/internal-releases</url>
-            <layout>default</layout>
-        </repository>
-
-        <!-- use the following if you ARE using a snapshot version. -->
-        <snapshotRepository>
-            <uniqueVersion>false</uniqueVersion>
-            <id>internal-snapshots</id>
-            <name>Internal Snapshots</name>
-            <url>https://repository.corp.eharmony.com/nexus/content/repositories/internal-snapshots</url>
-            <layout>default</layout>
-        </snapshotRepository>
-    </distributionManagement>
+        <tag>HEAD</tag>
+    </scm>
 
     <!-- start of dependencies -->
     <dependencies>
@@ -116,6 +95,26 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
             <version>${spring-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${spring-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>${spring-security-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>${spring-security-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-ldap</artifactId>
+            <version>${spring-security-version}</version>
         </dependency>
 
         <!-- Jersey dependencies -->
@@ -184,25 +183,19 @@
             <version>1.0</version>
         </dependency>
         <dependency>
-            <groupId>org.codehaus.jackson</groupId>
-            <artifactId>jackson-jaxrs</artifactId>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
             <version>${jackson-version}</version>
-            <type>jar</type>
-            <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>org.codehaus.jackson</groupId>
-            <artifactId>jackson-mapper-asl</artifactId>
+            <groupId>com.fasterxml.jackson.jaxrs</groupId>
+            <artifactId>jackson-jaxrs-json-provider</artifactId>
             <version>${jackson-version}</version>
-            <type>jar</type>
-            <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>org.codehaus.jackson</groupId>
-            <artifactId>jackson-xc</artifactId>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
             <version>${jackson-version}</version>
-            <type>jar</type>
-            <scope>compile</scope>
         </dependency>
 
         <!-- Swagger -->

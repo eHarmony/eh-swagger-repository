@@ -17,6 +17,11 @@ body {
     }
 }
 
+.center-form {
+    margin: 0 auto;
+    width: 350px;
+}
+
 #sidebar-show {
     float: left;
     display: none;

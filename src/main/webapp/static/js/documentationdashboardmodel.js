@@ -43,7 +43,7 @@ function DocumentationDashboardViewModel(documentation, dashboard) {
         if (event && event.type == "click") {
             self.dashboard.id = createDashboardId(self.dashboard.name);
             saveDashboard(self.dashboard, function() {
-                window.location.href = "/dashboardview.html?dashboardId=" + self.dashboard.id;
+                window.location.href = "/dashboards/view?dashboardId=" + self.dashboard.id;
             });
         }
     };

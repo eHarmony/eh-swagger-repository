@@ -8,6 +8,22 @@ $(document).ready(function() {
         } else {
             viewModel.currentDocumentation = ko.observable(documentation[0]);
         }
+
+        $.get("/accessed?url=" + viewModel.currentDocumentation().displaySwaggerUi());
         ko.applyBindings(viewModel);
     });
 });
+
+function accessedUI(data, event) {
+    if(event && event.type == "click") {
+        $.get("/accessed?url=" + data.currentDocumentation().displaySwaggerUi());
+    }
+    return true;
+}
+
+function accessedSpec(data, event) {
+    if(event && event.type == "click") {
+        $.get("/accessed?url=" + data.currentDocumentation().displaySwaggerSpec());
+    }
+    return true;
+}
