@@ -31,13 +31,13 @@
         </encoder>
     </appender>
 
-    <logger name="SECURITY_LOG">
+    <logger name="SECURITY_LOG" additivity="false">
         <level value="INFO" />
         <appender-ref ref="SECURITY_LOGGER"/>
     </logger>
 
     <root>
-        <level value="DEBUG" />
+        <level value="INFO" />
         <appender-ref ref="FILE" />
     </root>
 
