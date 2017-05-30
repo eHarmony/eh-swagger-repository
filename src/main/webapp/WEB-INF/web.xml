@@ -3,19 +3,15 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
          version="2.5">
     <welcome-file-list>
-        <welcome-file>index.html</welcome-file>
-        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>dashboards.html</welcome-file>
     </welcome-file-list>
     <display-name>eh-swagger-documentation-repository</display-name>
+
     <servlet>
         <servlet-name>jersey</servlet-name>
-        <servlet-class>com.sun.jersey.spi.spring.container.servlet.SpringServlet</servlet-class>
+        <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
         <init-param>
-            <param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
-            <param-value>true</param-value>
-        </init-param>
-        <init-param>
-            <param-name>com.sun.jersey.config.property.packages</param-name>
+            <param-name>jersey.config.server.provider.packages</param-name>
             <param-value>com.eharmony.services.swagger.resource;org.codehaus.jackson.jaxrs;io.swagger.jaxrs.json;io.swagger.validator.resources</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
@@ -24,6 +20,16 @@
     <servlet-mapping>
         <servlet-name>jersey</servlet-name>
         <url-pattern>/api/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>mvc-dispatcher</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>mvc-dispatcher</servlet-name>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
 
     <context-param>
@@ -35,16 +41,20 @@
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
 
-    <listener>
-        <listener-class>
-            org.springframework.web.context.request.RequestContextListener</listener-class>
-    </listener>
     <filter>
         <filter-name>ApiOriginFilter</filter-name>
         <filter-class>io.swagger.validator.util.ApiOriginFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>ApiOriginFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 </web-app>

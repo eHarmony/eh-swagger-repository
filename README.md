@@ -7,9 +7,9 @@ The central documentation server for finding swagger enabled services. Swagger e
 
 This service allows swagger enabled web services to publish their Swagger spec and other Swagger metadata to this
 web server.
-* /index.html : The dashboard that allows you to view, save and search different swagger UIs from available services
-* /services.html : The table view of all services that allows you to see more information about each service and search
-* /dashboards.html : Create and manage groupings of services as dashboards
+* /dashboards : Create and manage groupings of services as dashboards
+* /search : The table view of all services that allows you to see more information about each service and search
+* /dashboards/my : The dashboard that allows you to view, save and search different swagger UIs from available services
 
 ## Configure
 

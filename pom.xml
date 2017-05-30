@@ -4,7 +4,7 @@
 
     <groupId>com.eharmony.services</groupId>
     <artifactId>eh-swagger-repository</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>2.0.0-SNAPSHOT</version>
     <name>eh-swagger-repository</name>
     <packaging>war</packaging>
 
@@ -14,54 +14,35 @@
     </organization>
 
     <properties>
-        <service.port>8081</service.port>
-
-        <spring-version>4.0.5.RELEASE</spring-version>
-        <jersey-version>1.19</jersey-version>
+        <spring-version>4.3.6.RELEASE</spring-version>
+        <spring-security-version>4.2.2.RELEASE</spring-security-version>
+        <jersey-version>2.23.2</jersey-version>
         <mockito-version>1.9.0</mockito-version>
-        <jackson-version>1.9.13</jackson-version>
+        <jackson-version>2.6.3</jackson-version>
+        <logback-version>1.0.13</logback-version>
         <joda-time-version>2.2</joda-time-version>
         <metrics-version>2.2.0</metrics-version>
         <google-guava-version>18.0</google-guava-version>
         <findbugs-version>3.0.2</findbugs-version>
         <checkstyle-version>2.17</checkstyle-version>
         <junit-version>4.12</junit-version>
+        <jetty-version>9.2.10.v20150310</jetty-version>
 
         <commons-logging-version>1.2</commons-logging-version>
-        <slf4j-version>1.7.7</slf4j-version>
+        <slf4j-version>1.7.21</slf4j-version>
         <log4j-version>1.2.17</log4j-version>
 
-        <eh-swagger-version>2.0.1</eh-swagger-version>
+        <eh-swagger-version>2.0.1-jersey2</eh-swagger-version>
         <eh-swagger-repository-model-version>1.0.1</eh-swagger-repository-model-version>
-	    <eh-swagger-validator-version>1.0.0</eh-swagger-validator-version>
+        <eh-swagger-validator-version>2.0.0-SNAPSHOT</eh-swagger-validator-version>
     </properties>
 
     <scm>
         <connection>scm:git:git@github.com:eHarmony/eh-swagger-repository.git</connection>
         <url>git@github.com:eHarmony/eh-swagger-repository.git</url>
         <developerConnection>scm:git:git@github.com:eHarmony/eh-swagger-repository.git</developerConnection>
-      <tag>HEAD</tag>
-  </scm>
-
-    <distributionManagement>
-        <!-- use the following if you're not using a snapshot version. -->
-        <repository>
-            <uniqueVersion>false</uniqueVersion>
-            <id>internal-releases</id>
-            <name>Internal Releases</name>
-            <url>https://repository.corp.eharmony.com/nexus/content/repositories/internal-releases</url>
-            <layout>default</layout>
-        </repository>
-
-        <!-- use the following if you ARE using a snapshot version. -->
-        <snapshotRepository>
-            <uniqueVersion>false</uniqueVersion>
-            <id>internal-snapshots</id>
-            <name>Internal Snapshots</name>
-            <url>https://repository.corp.eharmony.com/nexus/content/repositories/internal-snapshots</url>
-            <layout>default</layout>
-        </snapshotRepository>
-    </distributionManagement>
+        <tag>HEAD</tag>
+    </scm>
 
     <!-- start of dependencies -->
     <dependencies>
@@ -69,6 +50,14 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>${slf4j-version}</version>
+        </dependency>
+        <dependency>
+            <!-- For components that depend on Log4J at compile time -->
+            <!-- (Contains definitions of Log4J classes directly) -->
+            <groupId>org.slf4j</groupId>
+            <artifactId>log4j-over-slf4j</artifactId>
+            <version>${slf4j-version}</version>
+            <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>commons-lang</groupId>
@@ -79,42 +68,6 @@
             <groupId>commons-logging</groupId>
             <artifactId>commons-logging</artifactId>
             <version>${commons-logging-version}</version>
-        </dependency>
-        <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>${log4j-version}</version>
-        </dependency>
-        <dependency>
-            <groupId>asm</groupId>
-            <artifactId>asm</artifactId>
-            <version>3.2</version>
-        </dependency>
-
-        <!-- eharmony dependencies -->
-        <dependency>
-            <groupId>com.eharmony.logging</groupId>
-            <artifactId>logging-library</artifactId>
-            <version>6</version>
-        </dependency>
-        <dependency>
-            <groupId>com.eharmony.bmx</groupId>
-            <artifactId>bmx-library</artifactId>
-            <version>24</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>google-collections</artifactId>
-                    <groupId>com.google.collections</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>servlet-api</artifactId>
-                    <groupId>javax.servlet</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>xml-apis</artifactId>
-                    <groupId>xml-apis</groupId>
-                </exclusion>
-            </exclusions>
         </dependency>
 
         <!--spring framework -->
@@ -145,35 +98,55 @@
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-orm</artifactId>
+            <artifactId>spring-webmvc</artifactId>
             <version>${spring-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>${spring-security-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>${spring-security-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-ldap</artifactId>
+            <version>${spring-security-version}</version>
         </dependency>
 
         <!-- Jersey dependencies -->
+
         <dependency>
-            <groupId>com.sun.jersey</groupId>
+            <groupId>org.glassfish.jersey.core</groupId>
             <artifactId>jersey-server</artifactId>
             <version>${jersey-version}</version>
         </dependency>
 
         <dependency>
-            <groupId>com.sun.jersey</groupId>
+            <groupId>org.glassfish.jersey.core</groupId>
             <artifactId>jersey-client</artifactId>
             <version>${jersey-version}</version>
         </dependency>
 
         <dependency>
-            <groupId>com.sun.jersey.contribs</groupId>
-            <artifactId>jersey-spring</artifactId>
+            <groupId>org.glassfish.jersey.ext</groupId>
+            <artifactId>jersey-spring3</artifactId>
             <version>${jersey-version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.springframework</groupId>
-                    <artifactId>spring</artifactId>
+                    <artifactId>spring-aop</artifactId>
                 </exclusion>
                 <exclusion>
                     <groupId>org.springframework</groupId>
                     <artifactId>spring-web</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring</artifactId>
                 </exclusion>
                 <exclusion>
                     <groupId>org.springframework</groupId>
@@ -188,8 +161,12 @@
                     <artifactId>spring-beans</artifactId>
                 </exclusion>
                 <exclusion>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring-aop</artifactId>
+                    <groupId>org.glassfish.hk2.external</groupId>
+                    <artifactId>bean-validator</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.jvnet</groupId>
+                    <artifactId>tiger-types</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
@@ -206,37 +183,19 @@
             <version>1.0</version>
         </dependency>
         <dependency>
-            <groupId>org.codehaus.jackson</groupId>
-            <artifactId>jackson-jaxrs</artifactId>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
             <version>${jackson-version}</version>
-            <type>jar</type>
-            <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>org.codehaus.jackson</groupId>
-            <artifactId>jackson-mapper-asl</artifactId>
+            <groupId>com.fasterxml.jackson.jaxrs</groupId>
+            <artifactId>jackson-jaxrs-json-provider</artifactId>
             <version>${jackson-version}</version>
-            <type>jar</type>
-            <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>org.codehaus.jackson</groupId>
-            <artifactId>jackson-xc</artifactId>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
             <version>${jackson-version}</version>
-            <type>jar</type>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.sun.jersey</groupId>
-            <artifactId>jersey-json</artifactId>
-            <version>${jersey-version}</version>
-            <type>pom</type>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.mortbay.jetty</groupId>
-            <artifactId>jetty</artifactId>
-            <version>6.1.22</version>
         </dependency>
 
         <!-- Swagger -->
@@ -268,6 +227,19 @@
             <groupId>org.reflections</groupId>
             <artifactId>reflections</artifactId>
             <version>0.9.10</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.javassist</groupId>
+            <artifactId>javassist</artifactId>
+            <version>3.20.0-GA</version>
+        </dependency>
+
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback-version}</version>
+            <scope>runtime</scope>
         </dependency>
 
 
@@ -350,56 +322,38 @@
             </plugin>
             <!-- jetty plugin -->
             <plugin>
-                <groupId>org.mortbay.jetty</groupId>
-                <artifactId>maven-jetty-plugin</artifactId>
-                <version>6.1.20</version>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>${jetty-version}</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>ch.qos.logback</groupId>
+                        <artifactId>logback-core</artifactId>
+                        <version>${logback-version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>ch.qos.logback</groupId>
+                        <artifactId>logback-classic</artifactId>
+                        <version>${logback-version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>ch.qos.logback</groupId>
+                        <artifactId>logback-access</artifactId>
+                        <version>${logback-version}</version>
+                    </dependency>
+                </dependencies>
                 <configuration>
-                    <connectors>
-                        <connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
-                            <port>${service.port}</port>
-                        </connector>
-                    </connectors>
                     <scanIntervalSeconds>5</scanIntervalSeconds>
-                    <systemProperties>
-                        <systemProperty>
-                            <name>config</name>
-                            <value>file:jetty/override.properties</value>
-                        </systemProperty>
-                        <systemProperty>
-                            <name>config.secure.location</name>
-                            <value>file:jetty</value>
-                        </systemProperty>
-                        <systemProperty>
-                            <name>org.mortbay.jetty.webapp.parentLoaderPriority</name>
-                            <value>true</value>
-                        </systemProperty>
-                        <systemProperty>
-                            <name>org.apache.commons.logging.Log</name>
-                            <value>org.apache.commons.logging.impl.Log4JLogger</value>
-                        </systemProperty>
-                        <systemProperty>
-                            <name>slf4j</name>
-                            <value>false</value>
-                        </systemProperty>
-                        <systemProperty>
-                            <name>log4j.configuration</name>
-                            <value>file:jetty/log4j.xml</value>
-                        </systemProperty>
-                        <systemProperty>
-                            <name>webinf.lib.dir</name>
-                            <value>file:${project.build.directory}/${artifactId}-${pom.version}/WEB-INF/lib</value>
-                        </systemProperty>
-                        <systemProperty>
-                            <name>protobuf.jar.regex</name>
-                            <value>(protostuff.*)|(matching.*)</value>
-                        </systemProperty>
-                    </systemProperties>
-                    <argLine>-Xmx1050m -XX:MaxPermSize=512M
-                        -XX:+UseConcMarkSweepGC
-                        -XX:+UseParNewGC
-                        -XX:+CMSClassUnloadingEnabled
-                        -XX:+CMSPermGenSweepingEnabled
-                    </argLine>
+                    <systemPropertiesFile>${basedir}/jetty/override.properties</systemPropertiesFile>
+                    <webApp>
+                        <extraClasspath>${basedir}/jetty/</extraClasspath>
+                        <contextPath>/</contextPath>
+                        <descriptor>/src/main/webapp/WEB-INF/web.xml</descriptor>
+                        <tempDirectory>tmp</tempDirectory>
+                    </webApp>
+                    <jettyXml>jetty/jetty-app.xml</jettyXml>
+                    <jvmArgs>-Xmx1050m
+                    </jvmArgs>
                 </configuration>
             </plugin>
 

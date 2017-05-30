@@ -2,35 +2,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>Dashboard Edit | EH Swagger Documentation</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" type="image/png" href="./img/swagger.png">
-
-    <!-- Le styles -->
-    <link href="./lib/bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link href="./css/main.css" rel="stylesheet">
-
+    <%@include file="header.jsp"%>
 </head>
 
 <body>
 
-<div class="navbar navbar-inverse navbar-fixed-top">
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div>
-            <div class="navbar-header"><a class="navbar-brand" href="/">API</a></div>
-            <div>
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="/dashboards.html">Dashboards</a></li>
-                    <li><a href="/search.html">Search</a></li>
-                    <li><a href="/mydashboard.html">My Dashboard</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-</div>
+<%@include file="navigation.jsp"%>
 
 <div class="container-fluid">
     <div class="row-fluid">
@@ -108,16 +85,11 @@
 
 </div><!--/.fluid-container-->
 
-<!-- Le javascript
-================================================== -->
-<script src="./lib/jquery-1.11.3.min.js"></script>
-<script src="./lib/jquery-cookie.js"></script>
-<script src="./lib/bootstrap/js/bootstrap.min.js"></script>
-<script src="./lib/knockout-3.3.0.js"></script>
-<script src="./js/dashboardmodel.js"></script>
-<script src="./js/documentationmodel.js"></script>
-<script src="./js/documentationdashboardmodel.js"></script>
-<script src="./js/editdashboard.js"></script>
+<%@include file="footer.jsp"%>
+<script src="/static/js/dashboardmodel.js"></script>
+<script src="/static/js/documentationmodel.js"></script>
+<script src="/static/js/documentationdashboardmodel.js"></script>
+<script src="/static/js/editdashboard.js"></script>
 
 </body>
 </html>

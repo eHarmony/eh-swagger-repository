@@ -19,7 +19,9 @@
     </bean>
 
     <context:annotation-config />
-    <context:component-scan base-package="com.eharmony.services"/>
+    <context:component-scan base-package="com.eharmony.services.swagger.resource"/>
+
+    <import resource="securityContext.xml"/>
 
     <bean name="documentationRepository" class="com.eharmony.services.swagger.persistence.FileDocumentationRepository">
         <property name="fileLocation" value="${filerepository.location}"/>

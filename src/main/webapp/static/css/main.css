@@ -1,0 +1,106 @@
+body {
+    padding-top: 60px;
+    padding-bottom: 40px;
+    height: 100%;
+    min-height: 600px;
+}
+.sidebar-nav {
+    padding: 9px 0;
+}
+
+@media (max-width: 980px) {
+    /* Enable use of floated navbar text */
+    .navbar-text.pull-right {
+        float: none;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}
+
+.center-form {
+    margin: 0 auto;
+    width: 350px;
+}
+
+#sidebar-show {
+    float: left;
+    display: none;
+    width: 2%;
+    margin: auto;
+    text-align: center;
+    padding: 4px;
+}
+
+.navbar-inverse {
+    background-color: #328AA1;
+    border-color: #299CBF;
+}
+
+.navbar-inverse .navbar-brand {
+    color: white;
+    background: url(http://static.eharmony.com/files/corp/images/flip/logo-white.png) no-repeat left center;
+    margin: 0px 5px 0px 15px;
+    padding: 15px 12px 15px 180px;
+    font-size: 24px;
+}
+
+.navbar-inverse .nav > li > a {
+    color: white;
+}
+
+.navbar-inverse .nav > li > a:hover {
+    background-color: #299CBF;
+}
+
+.navbar-inverse .navbar-nav>.active>a {
+    background-color: #299CBF;
+}
+
+.navbar .nav .active > a:hover {
+    background-color: #299CBF;
+}
+
+.not-active {
+    pointer-events: none;
+    cursor: default;
+}
+#api-link h4 {
+    display: inline;
+    margin-right: 30px;
+}
+
+.positive-action {
+    color: green;
+    font-size: 8pt;
+}
+
+a.action:hover, li > a.action:hover {
+    text-decoration: none;
+    background-color: transparent;
+}
+
+a.action:visited {
+    text-decoration: none;
+}
+
+.negative-action {
+    color: red;
+    font-size: 8pt;
+}
+
+#api-frame {
+    margin-top: -40px;
+}
+
+#api-link {
+    position: relative;
+    right: 40px;
+}
+
+#hide-link {
+    margin: -10px 5px 0px 0px;
+}
+
+.search-container {
+    margin: 45px 0px 0px 0px;
+}
