@@ -17,7 +17,7 @@
         <sec:logout logout-success-url="/login?logout=true" />
         <sec:remember-me remember-me-parameter="remember-me"
                          token-repository-ref="inMemoryTokenRepository"
-                         token-validity-seconds="86400"/>
+                         token-validity-seconds="${login.remember.token.seconds}"/>
         <sec:logout/>
     </sec:http>
 
